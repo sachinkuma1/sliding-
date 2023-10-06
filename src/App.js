@@ -1,23 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState} from 'react';
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+const data=["sachin", "suraj", "prasad","asif"];
+
+
+
 
 function App() {
+
+  const next=()=>{
+    const newindex=(index+1)%data.length;
+     setIndex(newindex);
+  }
+
+  const prev=()=>{
+    const newdata=(index-1+data.length)%data.length;
+    setIndex(newdata);
+  }
+  
+
+  const [index, setIndex]=useState(0);
+
+  // const naam=data[index].name;
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <p>{data[index]}</p>
+      <button  onClick={next}>
+      <FaChevronLeft/>
+      </button>
+      <button onClick={prev}>
+      <FaChevronRight/>
+      </button>
+    
     </div>
   );
 }
